@@ -10,9 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
-
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,22 +19,17 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
 @ToString
 @EqualsAndHashCode
 public class Band {
 
-//	public Band() {
-//		super();
-//		// TODO Auto-generated constructor stub
-//	}
-
 	@Id
 	@GeneratedValue //Auto-increment
-	private long id;
+	private Long id;
 	
 	@Column(name="band_name", unique=true)
 	private String name;

@@ -11,6 +11,7 @@ import javax.validation.constraints.Size;
 
 import com.sun.istack.NotNull;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,10 +20,10 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
+@Getter(AccessLevel.PUBLIC)
+@Setter(AccessLevel.PUBLIC)
 @ToString
 @EqualsAndHashCode
 public class Guitarist {
@@ -31,21 +32,18 @@ public class Guitarist {
 	
 	@Id
 	@GeneratedValue //Auto-increment
-	private long id;
+	private Long id;
 	
 	@Column(name="guitarist_name",unique=true)
-	@NotNull
 	@Size(min=1, max=120)
 	private String name;
 	
 	@Column(name="strings")
-	@NotNull
 	@Min(4)
 	@Max(12)
-	private int stringNo;
+	private Integer stringNo;
 	
 	@Column(name="type")
-	@NotNull
 	@Size(min=1, max=120)
 	private String type;
 	
@@ -54,14 +52,7 @@ public class Guitarist {
 
 	//shift + alt + s ---> constructor using fields
 	
-	public Guitarist(@Size(min = 1, max = 120) String type, @Min(4) @Max(12) int stringNo,
-			@Size(min = 1, max = 120) String name) {
-		super();
-		this.type = type;
-		this.stringNo = stringNo;
-		this.name = name;
-	}
-	
+
 	
 	
 }
