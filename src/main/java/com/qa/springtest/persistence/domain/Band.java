@@ -3,6 +3,7 @@ package com.qa.springtest.persistence.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,11 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class Band {
 
+//	public Band() {
+//		super();
+//		// TODO Auto-generated constructor stub
+//	}
+
 	@Id
 	@GeneratedValue //Auto-increment
 	private long id;
@@ -35,8 +41,7 @@ public class Band {
 	@Column(name="band_name", unique=true)
 	private String name;
 	
-	@OneToMany(targetEntity = Guitarist.class)
-	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(targetEntity = Guitarist.class, cascade = CascadeType.ALL)
 	private List<Guitarist> guitarists = new ArrayList<>();
 
 	public Band(String name) {

@@ -53,7 +53,7 @@ public class GuitaristService {
 	}
 	
 	//readbyid
-	public GuitaristDTO read(Long id) {
+	public GuitaristDTO getGuitaristById(Long id) {
 		Guitarist found =(this
 				.repo
 				.findById(id)
