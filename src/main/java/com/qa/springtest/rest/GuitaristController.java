@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.qa.springtest.dto.GuitaristDTO;
+import com.qa.springtest.persistence.domain.Guitarist;
 import com.qa.springtest.service.GuitaristService;
 
 @RestController
@@ -33,22 +34,22 @@ public class GuitaristController {
 
 	
 	//create
-	@PostMapping("/create")
-	public ResponseEntity<GuitaristDTO> create(@RequestBody GuitaristDTO guitaristDTO){
-		GuitaristDTO created = this.service.createGuitarist(guitaristDTO);
-		return new ResponseEntity<>(created, HttpStatus.CREATED);
-	}
+    @PostMapping("/create")
+    public ResponseEntity<GuitaristDTO> create(@RequestBody Guitarist guitarist) {
+        GuitaristDTO created = this.service.create(guitarist);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
 	//readall
-	@GetMapping("/readall")
-	public ResponseEntity<List<GuitaristDTO>> getAllGuitarists(){
-		return ResponseEntity.ok(this.service.read());
-	}
+    @GetMapping("/readall")
+    public ResponseEntity<List<GuitaristDTO>> read() {
+        return ResponseEntity.ok(this.service.read());
+    }
 	
 	//readbyid
-	@GetMapping("/read/{id}")
-	public ResponseEntity<GuitaristDTO> getGuitaristById(@PathVariable Long id){
-		return ResponseEntity.ok(this.service.getGuitaristById(id));
-	}
+    @GetMapping("/read/{id}")
+    public ResponseEntity<GuitaristDTO> read(@PathVariable Long id) {
+        return ResponseEntity.ok(this.service.read(id));
+    }
 	
 	//update
 	@PutMapping("/update/{id}")

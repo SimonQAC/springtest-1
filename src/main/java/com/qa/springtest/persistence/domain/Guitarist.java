@@ -1,5 +1,6 @@
 package com.qa.springtest.persistence.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,7 +48,7 @@ public class Guitarist {
 	@Size(min=1, max=120)
 	private String type;
 	
-	@ManyToOne(targetEntity = Band.class)
+	@ManyToOne
 	private Band band;
 
 	//shift + alt + s ---> constructor using fields

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.qa.springtest.dto.BandDTO;
+import com.qa.springtest.persistence.domain.Band;
 import com.qa.springtest.service.BandService;
 
 @RestController
@@ -33,11 +34,12 @@ public class BandController {
 
 	
 	//create
-	@PostMapping("/create")
-	public ResponseEntity<BandDTO> create(@RequestBody BandDTO bandDTO){
-		BandDTO created = this.service.createBand(bandDTO);
-		return new ResponseEntity<>(created, HttpStatus.CREATED);
-	}
+    @PostMapping("/create")
+    public ResponseEntity<BandDTO> create(@RequestBody Band band) {
+        BandDTO created = this.service.create(band);
+        return new ResponseEntity<>(created, HttpStatus.CREATED);
+    }
+		
 	//readall
 	@GetMapping("/readall")
 	public ResponseEntity<List<BandDTO>> getAllBands(){
@@ -47,7 +49,7 @@ public class BandController {
 	//readbyid
 	@GetMapping("/read/{id}")
 	public ResponseEntity<BandDTO> getBandById(@PathVariable Long id){
-		return ResponseEntity.ok(this.service.getBandById(id));
+		return ResponseEntity.ok(this.service.read(id));
 	}
 	
 	//update

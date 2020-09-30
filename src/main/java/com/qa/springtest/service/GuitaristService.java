@@ -38,28 +38,24 @@ public class GuitaristService {
 	}
 	
 	//create
-	public GuitaristDTO createGuitarist(GuitaristDTO guitaristDTO) {
-		Guitarist toSave = this.mapFromDTO(guitaristDTO);
-		Guitarist saved = this.repo.save(toSave);
-		return this.mapToDTO(saved);
-	}
+    public GuitaristDTO create(Guitarist guitarist) {
+        Guitarist created = this.repo.save(guitarist);
+        GuitaristDTO mapped = this.mapToDTO(created);
+        return mapped;
+    }
 	
 	//read
-	public List<GuitaristDTO> read(){
-		return this.repo.findAll()
-				.stream()
-				.map(this::mapToDTO)
-				.collect(Collectors.toList());
-	}
-	
+    public List<GuitaristDTO> read() {
+        List<Guitarist> found = this.repo.findAll();
+        List<GuitaristDTO> streamed = found.stream().map(this::mapToDTO).collect(Collectors.toList());
+        return streamed;
+    }
+    
 	//readbyid
-	public GuitaristDTO getGuitaristById(Long id) {
-		Guitarist found =(this
-				.repo
-				.findById(id)
-				.orElseThrow(GuitaristNotFoundException::new));
-		return this.mapToDTO(found);
-	}
+    public GuitaristDTO read(Long id) {
+        Guitarist found = this.repo.findById(id).orElseThrow(GuitaristNotFoundException::new);
+        return this.mapToDTO(found);
+    }
 	
 	//update
 	public GuitaristDTO update(GuitaristDTO guitaristDTO, Long id) {
